@@ -33,17 +33,17 @@ This is one of the case studies I did to check the feasability of the module cre
 
 ### VM Specification
 I am running this code on GCP VM instance with
--- 4 vCPUs (2 Cores)
--- 16 GB Memory
+ -- 4 vCPUs (2 Cores)
+ -- 16 GB Memory
 
 ### Sample Raw Data in directory "user_clicks"
 
 I have around 20 GB of data separated out into multiple files. The characteristics of the file includes:
--- No partitiong logic - random splits
--- No ordering of the columns - predicate pushdown process most probably read all files while filtering
--- Row Group size is kept 100K records per page
--- Number of Rows per file - 1M
--- Compression Type - Snappy
+ -- No partitiong logic - random splits
+ -- No ordering of the columns - predicate pushdown process most probably read all files while filtering
+ -- Row Group size is kept 100K records per page
+ -- Number of Rows per file - 1M
+ -- Compression Type - Snappy
 
 Here's the bucket sample I am showing in the below image
 
@@ -61,7 +61,7 @@ Metadata collection, processing and filtering with data dump takes around 1 minu
 
 ## Future Scope
 This is just a naive approach for reading data using Metadata which Apache Parquet provides. Future scope includes:
--- Using Bloom Filter for predicate matches
--- Better Query Optimizer and Data Serialization (Like Catalyst and Tungsten from Apache Spark)
--- Support for Sorting and merging, Coleasce or Z-ordering for file size optimization
--- Custom Partitioner support and lineage class
+ -- Using Bloom Filter for predicate matches
+ -- Better Query Optimizer and Data Serialization (Like Catalyst and Tungsten from Apache Spark)
+ -- Support for Sorting and merging, Coleasce or Z-ordering for file size optimization
+ -- Custom Partitioner support and lineage class
