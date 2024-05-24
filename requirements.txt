@@ -1,0 +1,4 @@
+pyarrow
+gcsfs
+fsspec
+pandas
