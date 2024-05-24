@@ -46,12 +46,14 @@ I have around 20 GB of data separated out into multiple files. The characteristi
 -- Compression Type - Snappy
 
 Here's the bucket sample I am showing in the below image
+
 <img width="418" alt="image" src="https://github.com/RahulDubey391/parquet-reader/assets/100185371/ebd8008c-16b1-444f-a9a5-5ec55b3df1d0">
 
 ### Metadata directory created after collection process
 The metadata is stored in the same location as the file, it's in the folder gs://<BUCKET_NAME>/<FOLDER_NAME>/metadata
 
 Here's the bucket sample with metadata files.
+
 <img width="292" alt="image" src="https://github.com/RahulDubey391/parquet-reader/assets/100185371/b9240285-c3b6-43cc-b40e-9e39dc8018e3">
 
 ## Conclusion
