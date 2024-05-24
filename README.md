@@ -1,6 +1,15 @@
 # parquet-reader
 Naive repo for understanding read process and optimization for Apache Parquet file format
 
+## How it works?
+Apache Parquet format is one of the best optimized file format with Columnar structure and compression. The module utilizes one of the crucial part of the Apache Parquet - Metadata. It is provided during the write process which is quite informative since it provides column level statistics for record filtering process. Although it's best to use stand libraries like Apache Arrow to use Parquet to it's full potentials, you can still get to know how this structure can be utilized. 
+
+Below is the process for how the metadata is used to read only those records which are needs based on query provided. This is called "Predicate Pushdown" which takes the column filters to refine the selection process for only those records that are required.
+
+![parquet-processor](https://github.com/RahulDubey391/parquet-reader/assets/100185371/4f554564-086d-4db7-8630-9f881d220701)
+
+
+
 ## Environment setup
 ```
 python3.11 -m venv dataenv
