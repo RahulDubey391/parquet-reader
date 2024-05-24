@@ -7,6 +7,7 @@ import os
 import json
 import multiprocessing
 import pandas as pd
+import time
 
 class FileExtensionError(Exception):
     pass
@@ -295,17 +296,20 @@ if __name__ == '__main__':
     #The final metadata will be stored per file as JSON format.
     #Metadata Location - gs://<BUCKET_NAME>/<FOLDER_NAME>/metadata
     #Data Location -gs://<BUCKET_NAME>/<FOLDER_NAME>/*.parquet
-    mc = MetadataCollector('sample', 'gcs', 'partition-store')
+    #File System - 'local' || 'gcs'
+    mc = MetadataCollector('<FOLDER_NAME>', '<FILE_SYSTEM>', '<BUCKET_NAME>')
     mc.run()
 
+    #NOTE: The Multiprocessing context for the forked server processes will not be released, its better to comment above step or just use the classes as separate imports.
     #It's better to halt the further execution for few seconds, metadata files reflection takes few seconds before written to GCS bucekt.
-
+    time.sleep(30)
+    
     #Add a naive query predicate with ';' separated for parser to separate the predicates.
     query = 'Year=2023;Month=1'
     predicate_dict = {i.split('=')[0]: int(i.split('=')[-1]) for i in query.split(';')}
 
     #Row group filtering based on provided query predicates
-    mp = MetadataProcessor('sample', 'gcs', 'partition-store')
+    mp = MetadataProcessor('<FOLDER_NAME>', '<FILE_SYSTEM>', '<BUCKET_NAME>')
     filtered_row_group_map = mp.run_filter_process(query)
 
     #Collect back the filtered rows into a Pandas DataFrame. 
